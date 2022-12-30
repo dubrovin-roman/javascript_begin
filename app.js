@@ -1,7 +1,14 @@
-const hourlyRate = 80;
-const durationOfWork = 40;
-const numberDaysBeforeDeparture = 11 - 2;
-let numberHoursForWork = numberDaysBeforeDeparture * 5;
+const depositAmountUSD = 12000;
+const depositRate = 0.07 / 12;
+const depositTerm = 2 * 12;
+const costOfHouseUSD = 13500;
 
-console.log('Успею ли я выполнить работу (40 часов): ' + (numberHoursForWork >= durationOfWork));
-console.log('Стоимость 40 часовой работы: ' + (durationOfWork * hourlyRate) + '$');
+const amountWithInterest = depositAmountUSD * (1 + depositRate) ** depositTerm;
+
+console.log(amountWithInterest);
+
+if (amountWithInterest >= costOfHouseUSD) {
+    console.log(`Через два года Вася сможет купить дома за ${costOfHouseUSD}$`);
+} else {
+    console.log("Вася не сможет купить дом.")
+}
