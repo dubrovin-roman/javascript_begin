@@ -1,14 +1,11 @@
-const depositAmountUSD = 12000;
-const depositRate = 0.07 / 12;
-const depositTerm = 2 * 12;
-const costOfHouseUSD = 13500;
+const answer = String(prompt("Сколько будет 7 +или- 15?"));
 
-const amountWithInterest = depositAmountUSD * (1 + depositRate) ** depositTerm;
-
-console.log(amountWithInterest);
-
-if (amountWithInterest >= costOfHouseUSD) {
-    console.log(`Через два года Вася сможет купить дома за ${costOfHouseUSD}$`);
-} else {
-    console.log("Вася не сможет купить дом.")
+switch (answer) {
+    case "22":
+    case "-8":
+    case "Я не робот":
+        console.log("Успех!");
+        break;
+    default:
+        console.log("Вы робот!");
 }
