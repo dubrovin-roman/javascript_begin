@@ -1,22 +1,49 @@
-// 7.8 Упражнение - Кредит на MacBook
+/*
+8.6 Упражнение - Обновление списка задач
 
-const AGE = 25;
-const IS_HAVE_JOB = false;
-const OWN_MONEY = 1800;
-const COST_LAPTOP = 2000;
+Дан список задач
+const tasks = ['Задача 1'];
 
-function possibleLoan(age, isHaveJob = false) {
-    if (age > 24 && isHaveJob) {
-        return 500;
-    } else if (age > 24 && !isHaveJob) {
-        return 100;
+Сделать функции:
+Добавление задачи в конец
+Удаление задачи по названию
+Перенос задачи в начало списка по названию
+! Всегда меняем исходный массив
+*/
+
+const tasks = ['Задача 1'];
+console.log(tasks);
+
+function addToEnd(task) {
+    tasks.push(task);
+}
+
+addToEnd('Задача 2');
+addToEnd('Задача 3');
+addToEnd('Задача 4');
+addToEnd('Задача 5');
+console.log(tasks);
+
+function deleteTaskByName(task) {
+    const index = tasks.indexOf(task);
+    if (index === -1)
+        return;
+    return tasks.splice(index, 1)[0];
+}
+
+console.log(deleteTaskByName('Задача 6'));
+console.log(deleteTaskByName('Задача 3'));
+console.log(tasks);
+
+function moveTaskToBeginByName(task) {
+    const delTask = deleteTaskByName(task);
+    if (delTask === undefined) {
+        console.log('Такого таска нет')
+        return;
     }
-    return 0;
+    tasks.unshift(delTask);
 }
 
-function isCanBuyLaptop(age, isHaveJob, ownMoney, costLaptop) {
-    const totalMoney = ownMoney + possibleLoan(age, isHaveJob);
-    return totalMoney >= costLaptop;
-}
-
-console.log(isCanBuyLaptop(AGE, IS_HAVE_JOB, OWN_MONEY, COST_LAPTOP));
+moveTaskToBeginByName('Задача 50');
+moveTaskToBeginByName('Задача 5');
+console.log(tasks);
