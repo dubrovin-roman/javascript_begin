@@ -1,49 +1,25 @@
 /*
-8.6 Упражнение - Обновление списка задач
+8.10 Упражнение - Функция разбора URL
 
-Дан список задач
-const tasks = ['Задача 1'];
+Дан произвольный url вида - https://purpleschool.ru/course/javascript
+Нужно сделать функцию, которая выводит в консоль:
 
-Сделать функции:
-Добавление задачи в конец
-Удаление задачи по названию
-Перенос задачи в начало списка по названию
-! Всегда меняем исходный массив
+Протокол (https)
+Доменное имя (purpleschool.ru)
+Путь внутри сайта (/course/javascript)
 */
 
-const tasks = ['Задача 1'];
-console.log(tasks);
+const url = 'https://purpleschool.ru/course/javascript';
 
-function addToEnd(task) {
-    tasks.push(task);
+function getDataFromUrl(url) {
+    const arrayFirst = url.split(':');
+    const protocolName = arrayFirst[0];
+    const arraySecond = arrayFirst[1].split('/');
+    const [_, __, domenName, ...innerPath] = arraySecond;
+    const innerPathName = '/' + (innerPath.join('/'));
+    console.log(`Протокол (${protocolName})
+Доменное имя (${domenName})
+Пуь внутри сайта (${innerPathName})`);
 }
 
-addToEnd('Задача 2');
-addToEnd('Задача 3');
-addToEnd('Задача 4');
-addToEnd('Задача 5');
-console.log(tasks);
-
-function deleteTaskByName(task) {
-    const index = tasks.indexOf(task);
-    if (index === -1)
-        return;
-    return tasks.splice(index, 1)[0];
-}
-
-console.log(deleteTaskByName('Задача 6'));
-console.log(deleteTaskByName('Задача 3'));
-console.log(tasks);
-
-function moveTaskToBeginByName(task) {
-    const delTask = deleteTaskByName(task);
-    if (delTask === undefined) {
-        console.log('Такого таска нет')
-        return;
-    }
-    tasks.unshift(delTask);
-}
-
-moveTaskToBeginByName('Задача 50');
-moveTaskToBeginByName('Задача 5');
-console.log(tasks);
+getDataFromUrl(url);
