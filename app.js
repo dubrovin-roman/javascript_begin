@@ -5,7 +5,7 @@ const IS_HAVE_JOB = false;
 const OWN_MONEY = 1800;
 const COST_LAPTOP = 2000;
 
-function possibleLoan(age, isHaveJob) {
+function possibleLoan(age, isHaveJob = false) {
     if (age > 24 && isHaveJob) {
         return 500;
     } else if (age > 24 && !isHaveJob) {
