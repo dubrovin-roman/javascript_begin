@@ -1,21 +1,12 @@
-const balance = 1100;
-const bonusBalance = 10;
-const isBanned = false;
-const isExist = true;
-const isSelling = true;
+// Упрощение функции
 
-if (((balance > 1000) || (bonusBalance > 100)) && !isBanned && isExist && isSelling) {
-    console.log("Можно купить игру")
-} else {
-    console.log("Нельзя купить игру")
+function toPower(num, power) {
+    const result = num ** power;
+    return result;
 }
 
-console.log(!"false");
+console.log(toPower(2, 3));
 
-console.log(!'' && 'Yes' || !('No' && 'false'));
+const res = (num, power) => num ** power;
 
-console.log(!'' && true && 'Yes' && Boolean('true') && 'PS');
-
-console.log('' ?? 'Yes');
-
-console.log((true && 'd') ?? '');
+console.log(res(2, 4));
