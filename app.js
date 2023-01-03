@@ -1,16 +1,11 @@
 /*
-10.4 Упражнение - Стрелочные функции
+11.4 Упражнение - вывод изменений цен
 */
 
-function power(pow) {
-    return function (num) {
-        return num**pow;
-    }
-}
+const prices = [[100, 200], [120, 100], [200, 350]];
 
-const powerOfTwo = power(2);
-console.log(powerOfTwo(4));
+const result = prices
+    .map(arr => arr[1] - arr[0])
+    .filter(el => el > 0);
 
-const powerOfThree = pow => num => num**pow;
-
-console.log(powerOfThree(3)(3));
+console.log(result);
