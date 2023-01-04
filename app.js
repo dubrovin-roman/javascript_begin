@@ -1,9 +1,16 @@
 /*
-11.6 Упражнение - среднее значение
+11.8 Упражнение - реализация some
 */
 
-const arr = [1, 4, 4, 10];
+const arr = [2, 4, 4, 10, 20];
 
-const arrSum = arr.reduce((acc, el) => acc += el, 0);
+function some(array, element) {
+    const findIndex = array.findIndex(el => el === element);
+    
+    if (findIndex === -1)
+        return false;
 
-console.log(`Среднее значение: ${arrSum / arr.length}`);
+    return true;
+}
+
+console.log(some(arr, 4));
