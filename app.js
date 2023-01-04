@@ -1,61 +1,65 @@
 /*
-13.6 Упражнение - кошелёк
+13.11 Упражнение - склад
 */
 
-const wallet = {
-    balance: 0,
-    operations: [],
-    increaseBalance: function(reasonOperation, sumOperation) {
-        this.balance += sumOperation;
-        this.operations.push({
-            reason: reasonOperation,
-            sum: sumOperation
-        });
-        return true;
+const warehouse = {
+    goods: [],
+    findGoodById: function (id) {
+        const findGood = this.goods.find(good => good.id === id);
+        if (!findGood) {
+            console.log(`Товар с id ${id} отсутствует на складе.`);
+        }
+        return findGood; 
     },
-    reduceBalance: function(reasonOperation, sumOperation) {
-        if (this.balance < sumOperation) {
-            console.log('Недостаточно средств на счете');
-            return false;
-        };
-        this.balance -= sumOperation;
-        this.operations.push({
-            reason: reasonOperation,
-            sum: -sumOperation
-        });
-        return true;
+    addGood: function (newGood) {
+        const findGood = this.goods.find(good => good.id === newGood.id);
+        if (findGood) {
+            console.log(`Товар с id ${newGood.id} уже существует на складе.`);
+            return;
+        }
+        this.goods.push(newGood);
     },
-    getCountOperations: function() {
-        return this.operations.length;
+    getWeightKg: function () {
+        return this.goods.reduce((acc, good) => {
+            const weightKg = good?.weight?.kg;
+            if (weightKg) {
+                return acc += weightKg;
+            }
+            return acc;
+        }, 0);
     }
 };
 
-console.log(wallet.increaseBalance('Зачисление зарплаты', 60000));
-console.log(wallet);
-console.log(wallet.operations);
-console.log(wallet.getCountOperations());
-console.log('----------------------');
+const car = {
+    id: 1,
+    weight: {
+        kg: 1000
+    },
+    brand: 'Ford'
+};
 
-console.log(wallet.reduceBalance('Покупка телевизора', 30000));
-console.log(wallet);
-console.log(wallet.operations);
-console.log(wallet.getCountOperations());
-console.log('----------------------');
+const chair = {
+    id: 2,
+    weight: {
+        kg: 2
+    }
+};
 
-console.log(wallet.reduceBalance('Покупка кофемашины', 40000));
-console.log(wallet);
-console.log(wallet.operations);
-console.log(wallet.getCountOperations());
-console.log('----------------------');
+const paper = {
+    id: 3,
+    color: 'red'
+}
 
-console.log(wallet.reduceBalance('Покупка телефона', 20000));
-console.log(wallet);
-console.log(wallet.operations);
-console.log(wallet.getCountOperations());
-console.log('----------------------');
-
-console.log(wallet.increaseBalance('Зачисление зарплаты', 120000));
-console.log(wallet);
-console.log(wallet.operations);
-console.log(wallet.getCountOperations());
-console.log('----------------------');
+warehouse.addGood(car);
+console.log(warehouse.goods);
+warehouse.addGood(chair);
+console.log(warehouse.goods);
+warehouse.addGood(paper);
+console.log(warehouse.goods);
+console.log('--------------------');
+console.log(warehouse.findGoodById(1));
+console.log(warehouse.findGoodById(2));
+console.log(warehouse.findGoodById(3));
+console.log(warehouse.findGoodById(4));
+console.log('--------------------');
+console.log(warehouse.getWeightKg());
