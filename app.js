@@ -21,7 +21,7 @@ const usersMap = users.map(el => {
     return {
         fullName: el.name + ' ' + el.surname,
         skillsNum: el.skills.length
-    }
+    };
 });
 
 console.log(usersMap);
