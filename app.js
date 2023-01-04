@@ -1,17 +1,27 @@
 /*
-13.3 Упражнение - сортировка пользователей
+13.4 Упражнение - преобразование объектов
 */
 
 const users = [
-    {name: 'Аня', age: 23},
-    {name: 'Петя', age: 40},
-    {name: 'Миша', age: 30},
-    {name: 'Вася', age: 28},
-    {name: 'Таня', age: 25}
+    {
+        name: 'Вася',
+        surname: 'Пупкин',
+        age: 30,
+        skills: ['Разработка', 'DevOps']
+    },
+    {
+        name: 'Катя',
+        surname: 'Белова',
+        age: 18,
+        skills: ['Дизайн']
+    }
 ];
 
-const sortUsers = users.sort((a, b) => {
-    return a.age - b.age;
+const usersMap = users.map(el => {
+    return {
+        fullName: el.name + ' ' + el.surname,
+        skillsNum: el.skills.length
+    }
 });
 
-console.log(sortUsers);
+console.log(usersMap);
