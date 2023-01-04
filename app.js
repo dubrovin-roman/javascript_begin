@@ -1,27 +1,61 @@
 /*
-13.4 Упражнение - преобразование объектов
+13.6 Упражнение - кошелёк
 */
 
-const users = [
-    {
-        name: 'Вася',
-        surname: 'Пупкин',
-        age: 30,
-        skills: ['Разработка', 'DevOps']
+const wallet = {
+    balance: 0,
+    operations: [],
+    increaseBalance: function(reasonOperation, sumOperation) {
+        this.balance += sumOperation;
+        this.operations.push({
+            reason: reasonOperation,
+            sum: sumOperation
+        });
+        return true;
     },
-    {
-        name: 'Катя',
-        surname: 'Белова',
-        age: 18,
-        skills: ['Дизайн']
+    reduceBalance: function(reasonOperation, sumOperation) {
+        if (this.balance < sumOperation) {
+            console.log('Недостаточно средств на счете');
+            return false;
+        };
+        this.balance -= sumOperation;
+        this.operations.push({
+            reason: reasonOperation,
+            sum: -sumOperation
+        });
+        return true;
+    },
+    getCountOperations: function() {
+        return this.operations.length;
     }
-];
+};
 
-const usersMap = users.map(el => {
-    return {
-        fullName: el.name + ' ' + el.surname,
-        skillsNum: el.skills.length
-    };
-});
+console.log(wallet.increaseBalance('Зачисление зарплаты', 60000));
+console.log(wallet);
+console.log(wallet.operations);
+console.log(wallet.getCountOperations());
+console.log('----------------------');
 
-console.log(usersMap);
+console.log(wallet.reduceBalance('Покупка телевизора', 30000));
+console.log(wallet);
+console.log(wallet.operations);
+console.log(wallet.getCountOperations());
+console.log('----------------------');
+
+console.log(wallet.reduceBalance('Покупка кофемашины', 40000));
+console.log(wallet);
+console.log(wallet.operations);
+console.log(wallet.getCountOperations());
+console.log('----------------------');
+
+console.log(wallet.reduceBalance('Покупка телефона', 20000));
+console.log(wallet);
+console.log(wallet.operations);
+console.log(wallet.getCountOperations());
+console.log('----------------------');
+
+console.log(wallet.increaseBalance('Зачисление зарплаты', 120000));
+console.log(wallet);
+console.log(wallet.operations);
+console.log(wallet.getCountOperations());
+console.log('----------------------');
