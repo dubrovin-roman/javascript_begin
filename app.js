@@ -1,16 +1,11 @@
 /*
-11.8 Упражнение - реализация some
+12.3 Упражнение - выделение имени
 */
 
-const arr = [2, 4, 4, 10, 20];
+let userName = 'Вася aka Terminator Perdinator Пупкин';
 
-function some(array, element) {
-    const findIndex = array.findIndex(el => el === element);
-    
-    if (findIndex === -1)
-        return false;
+let name = userName.slice(0, userName.indexOf(' '));
+console.log(name);
 
-    return true;
-}
-
-console.log(some(arr, 4));
+let surname = userName.slice(userName.lastIndexOf(' ') + 1);
+console.log(surname);
