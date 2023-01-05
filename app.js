@@ -1,24 +1,38 @@
 'use strict';
 
 /*
-16.4 Упражнение - управление this
+16.7 Упражнение - работа с замыканиями
 */
 
-function removePassword(reset) {
-    if (reset) {
-        this.password = undefined;
-    } else {
-        this.password = '1';
+const userInfo = {
+    balance: 0,
+    operations: 0,
+    increse(sum) {
+        this.balance += sum;
+        this.operations++;
     }
 }
 
-const user = {
-    userName: 'Роман',
-    password: '12345'
-};
+function newUser() {
+    const user = {
+        balance: 0,
+        operations: 0,
+        increse(sum) {
+            this.balance += sum;
+            this.operations++;
+        }
+    }
+    return function() {
+        return user;
+    }
+}
 
-const removePasswordUser = removePassword.bind(user, true);
+const user1 = newUser();
 
-removePasswordUser();
+user1().increse(100);
+user1().increse(100);
+console.log(user1());
 
-console.log(user.password);
+const user2 = newUser();
+user2().increse(50);
+console.log(user2());
