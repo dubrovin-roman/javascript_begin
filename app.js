@@ -1,48 +1,24 @@
 'use strict';
 
 /*
-15.10 Упражнение - объект в объекте
+16.4 Упражнение - управление this
 */
 
-const company = {
-    name: 'ООО Агро',
-    employees: [
-        {
-            name: 'Света',
-            getName: function () {
-                return this.name;
-            }
-        },
-        {
-            name: 'Олег',
-            getName: function () {
-                return this.name;
-            }
-        },
-        {
-            name: 'Евлампий',
-            getName: function () {
-                return this.name;
-            }
-        }
-    ],
-    ceo: {
-        name: 'Вася',
-        getName: function () {
-            return this.name;
-        }
-    },
-    getCompanyName: function () {
-        return this.name;
-    },
-    getCEOName: function () {
-        return this.ceo.getName();
-    },
-    getEmployeesNames: function () {
-        return this.employees.map(emp => emp.getName());
+function removePassword(reset) {
+    if (reset) {
+        this.password = undefined;
+    } else {
+        this.password = '1';
     }
+}
+
+const user = {
+    userName: 'Роман',
+    password: '12345'
 };
 
-console.log(company.getCompanyName());
-console.log(company.getCEOName());
-console.log(company.getEmployeesNames());
+const removePasswordUser = removePassword.bind(user, true);
+
+removePasswordUser();
+
+console.log(user.password);
