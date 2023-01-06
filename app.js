@@ -1,38 +1,19 @@
 'use strict';
-
 /*
-16.7 Упражнение - работа с замыканиями
+17.7 Упражнение - получение DOM элементов
 */
 
-const userInfo = {
-    balance: 0,
-    operations: 0,
-    increse(sum) {
-        this.balance += sum;
-        this.operations++;
-    }
-}
+const el1 = document.querySelectorAll('.one')[0].innerText;
+console.log(el1);
 
-function newUser() {
-    const user = {
-        balance: 0,
-        operations: 0,
-        increse(sum) {
-            this.balance += sum;
-            this.operations++;
-        }
-    }
-    return function() {
-        return user;
-    }
-}
+const el2 = document.querySelectorAll('.one')[1].innerText;
+console.log(el2);
 
-const user1 = newUser();
+const el3 = document.querySelector('#two').innerText;
+console.log(el3);
 
-user1().increse(100);
-user1().increse(100);
-console.log(user1());
+const elem3 = document.getElementById('two').innerText;
+console.log(elem3);
 
-const user2 = newUser();
-user2().increse(50);
-console.log(user2());
+const el4 = document.querySelector('[user-id="4"]').innerText;
+console.log(el4);
